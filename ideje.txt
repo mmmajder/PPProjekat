@@ -1,0 +1,11 @@
+problem 
+
+promenjiva u klasi dobija klasu kao atr2 	- done
+
+promenjiva u fji dobija fju kao atr2
+
+prommenjiva u statementu doboija dubinu
+
+
+
+

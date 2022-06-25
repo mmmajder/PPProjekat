@@ -1,0 +1,4 @@
+fajl se sastoji iz jedne ili vise klase
+klase moraju da imaju razlicita imena
+klase koje su public ce se na kraju naci u tabeli simbola
+
