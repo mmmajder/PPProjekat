@@ -4,7 +4,7 @@ public class Proba {
 	//int d = 5;
 	//int a;
 	private static void add() {
-			//int a;
+			int x;
 			//b=1;
 			//int a;
 			
@@ -15,6 +15,7 @@ public class Proba {
 	}
 
 	private static void add2() {
+			int x;
 				for (int i=0; i<10; i++) {			
 				}
 		}
@@ -27,5 +28,6 @@ public class Proba {
 
 public class Proba2 {
 	String a;
+	int b;
 String adasdsa2;
 }

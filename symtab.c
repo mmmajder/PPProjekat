@@ -169,7 +169,7 @@ void clear_symtab(void) {
 // Ispisuje sve elemente tabele simbola.
 void print_symtab(void) {
   static const char *symbol_kinds[] = { 
-    "NONE", "REG", "LIT", "FUN", "VAR", "PAR", "CLS" };
+    "NONE", "REG", "LIT", "FUN", "VAR", "PAR", "CLS", "CLS_ATR" };
   int i,j;
   printf("\n\nSYMBOL TABLE\n");
   printf("\n       name           kind   type  atr1   atr2");

@@ -22,7 +22,7 @@
 	int class_count = 0;
 	int *class_name_size[100];
 	int list_vars_type = -1;
-	
+	int func_count = 0;
 	
 %}
 
@@ -142,7 +142,7 @@ function_list
 function
   : _ACCESS_SPECIFIER static _TYPE _ID
       {
-				
+				func_count++;
         fun_idx = lookup_symbol($4, FUN);
         if(fun_idx == NO_INDEX) {
           fun_idx = insert_symbol($4, FUN, $3, NO_ATR, NO_ATR);
@@ -319,39 +319,40 @@ class_variable
 
 class_line_vars
 	: _ID {
-		int idx = lookup_symbol($1, VAR|PAR);
+		int idx = lookup_symbol($1, CLS_ATR);
 		if(idx != -1)
 			if (get_atr2(idx)!=class_count) {
-			  insert_symbol($1, VAR, list_vars_type, ++var_num, class_count);
+			  insert_symbol($1, CLS_ATR, list_vars_type, ++var_num, class_count);
 			}
 			else	{
 		  	err("redefinition of '%s'", $1);
 			}
 		else
-		  insert_symbol($1, VAR, list_vars_type, ++var_num, class_count);
+		  insert_symbol($1, CLS_ATR, list_vars_type, ++var_num, class_count);
   }
   | class_line_vars _COMMA _ID
   {
-    if(lookup_symbol($3, VAR|PAR) != -1)
+    if(lookup_symbol($3, CLS_ATR) != -1)
       err("redefinition of '%s'", $3);
     else
-      insert_symbol($3, VAR, list_vars_type, ++var_num, class_count);
+      insert_symbol($3, CLS_ATR, list_vars_type, ++var_num, class_count);
   }
 	;
 
 vars
   : _ID {
-  if(lookup_symbol($1, VAR|PAR) != -1)
+	int idx = lookup_symbol($1, VAR|PAR);
+  if(idx != -1 && get_atr2(idx)==func_count)
     err("redefinition of '%s'", $1);
   else
-    insert_symbol($1, VAR, list_vars_type, ++var_num, NO_ATR);
+    insert_symbol($1, VAR, list_vars_type, ++var_num, func_count);
   }
   | vars _COMMA _ID
   {
     if(lookup_symbol($3, VAR|PAR) != -1)
       err("redefinition of '%s'", $3);
     else
-      insert_symbol($3, VAR, list_vars_type, ++var_num, NO_ATR);
+      insert_symbol($3, VAR, list_vars_type, ++var_num, func_count);
   }
   ;
 
