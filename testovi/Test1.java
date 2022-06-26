@@ -1,12 +1,28 @@
-public class Proba {
-	int a,c;
+public class Proba2 {
+	int a;
 	int b;
-	int x;
-	//int d = 5;
-	//int a;
+
+	Proba() {}
+
+	private static void add2() {
+			int x;
+			for (int i=0; i<10; i++) {			
+			}
+		}
+
+private static void add() {
+			int x;
+			for (int i=0; i<10; i++) {			
+			}
+		}
+}
+
+
+public class Proba {
+	int c;
+	int a;
+	int b;
 	Proba() {
-		this.a = a;
-		this.b = b;
 	}
 	
 	Proba(int a, int b) {
@@ -17,8 +33,6 @@ public class Proba {
 	
 	private static void add() {
 			int x;
-			//b=1;
-			//int a;
 			int d;
 			
 			Proba p = new Proba();
@@ -28,8 +42,6 @@ public class Proba {
 			for (int i=0; i<10; i++) {
 				d++;
 				i++;
-				//int dadsa;
-				//i++;			
 			}
 	}
 
@@ -45,24 +57,6 @@ public class Proba {
 
 }
 
-public class Proba2 {
-	String a;
-	int b;
-String adasdsa2;
-	Proba() {}
-
-	private static void add2() {
-//			int x;
-//			for (int i=0; i<10; i++) {			
-//			}
-		}
-
-private static void add() {
-//			int x;
-//			for (int i=0; i<10; i++) {			
-//			}
-		}
-}
 
 
 

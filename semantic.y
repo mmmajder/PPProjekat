@@ -88,30 +88,12 @@ class_list
 class
 	: _ACCESS_SPECIFIER _CLASS _CLASSNAME {
 	//provera da li postoji funkcija sa datim imenom
-		/*	for (int i=0; i<class_count; i++) {
-				printf("bam");
-				printf("%s", $3);
-				printf("%s", class_names[i]);
-				printf("%d", *class_name_size[i]);
-				if (strcmp($3, class_names[i])==0) {
-					err("Class with name %s already exist in this file", class_names[i]);
-				}
-			}*/
 			int cls_idx = lookup_symbol($3, CLS);
 			
 			if(cls_idx == NO_INDEX)
 			{
         $<i>$ = insert_symbol($3, CLS, $1, NO_ATR, NO_ATR);
-				//class_names[class_count] = $3;
-				/*printf("jea");
-				printf("%s", class_names[class_count]);
-				class_names[class_count] = malloc(100);
-				if (class_names[class_count]) {
-            strcpy(class_names[class_count], $3);
-        }*/
-				printf("class_count %d", class_count);
     		class_count++;
-				printf("class_count %d", class_count);
       }
       else 
         err("redefinition of class '%s'", $3);
@@ -161,7 +143,18 @@ _constructor_body
 	;
 
 _constructor_row
-	: _THIS _DOT _ID _ASSIGN _ID _SEMICOLON
+	: _THIS _DOT _ID _ASSIGN _ID {
+
+		int idx = lookup_symbol($3, CLS_ATR);
+		if (idx==-1) {
+			err("Variable is not declared in last class");
+		}
+		
+		if (get_atr2(idx) != class_count) {
+			err("Variable is not declared in last class");
+		}
+		
+	} _SEMICOLON
 	;
 
 	
