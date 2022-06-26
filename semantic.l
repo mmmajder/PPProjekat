@@ -70,7 +70,7 @@
 "=="                 { yylval.i = EQ; return _RELOP; }
 "!="                 { yylval.i = NE; return _RELOP; }
 ","		     					 { return _COMMA; }
-
+"."									 { return _DOT; }
 
 [A-Z][a-zA-Z0-9]* { yylval.s = strdup(yytext); 
                        return _CLASSNAME; }

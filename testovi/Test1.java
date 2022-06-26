@@ -4,6 +4,11 @@ public class Proba {
 	int x;
 	//int d = 5;
 	//int a;
+	public Proba() {
+		this.a = a;
+		this.b = b;
+	}
+	
 	private static void add() {
 			int x;
 			//b=1;
@@ -34,24 +39,8 @@ public class Proba2 {
 	String a;
 	int b;
 String adasdsa2;
-	private static void add2() {
-//			int x;
-//			for (int i=0; i<10; i++) {			
-//			}
-		}
+	public Proba() {}
 
-private static void add() {
-//			int x;
-//			for (int i=0; i<10; i++) {			
-//			}
-		}
-}
-
-
-public class Proba3 {
-	String a;
-	int b;
-String adasdsa2;
 	private static void add2() {
 //			int x;
 //			for (int i=0; i<10; i++) {			

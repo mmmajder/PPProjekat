@@ -76,7 +76,8 @@ extern int yydebug;
     _NEW = 286,
     _CLASS = 287,
     _STATIC = 288,
-    ONLY_IF = 289
+    _DOT = 289,
+    ONLY_IF = 290
   };
 #endif
 
@@ -90,7 +91,7 @@ union YYSTYPE
   int i;
   char *s;
 
-#line 94 "semantic.tab.h" /* yacc.c:1909  */
+#line 95 "semantic.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

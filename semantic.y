@@ -65,7 +65,7 @@
 %token _NEW
 %token _CLASS			//
 %token _STATIC
-
+%token _DOT
 
 %type <i> num_exp exp literal function_call argument rel_exp
 
@@ -109,7 +109,7 @@ class
 				if (class_names[class_count]) {
             strcpy(class_names[class_count], $3);
         }*/
-printf("class_count %d", class_count);
+				printf("class_count %d", class_count);
     		class_count++;
 				printf("class_count %d", class_count);
       }
@@ -125,13 +125,30 @@ printf("class_count %d", class_count);
 	;
 	
 class_statements
-	: _LBRACKET class_variable_list function_list _RBRACKET
+	: _LBRACKET class_variable_list constructor_list function_list _RBRACKET
 	;
 
 class_variable_list
 	: 
   | class_variable_list class_variable
   ;
+
+constructor_list
+	: constructor
+	;
+constructor
+	: _ACCESS_SPECIFIER _CLASSNAME _LPAREN _RPAREN _LBRACKET _constructor_body _RBRACKET
+	;
+
+_constructor_body
+	: 
+	| _constructor_body _constructor_row
+	;
+
+_constructor_row
+	: _THIS _DOT _ID _ASSIGN _ID _SEMICOLON
+	;
+
 	
 	
 function_list
