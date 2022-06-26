@@ -10,7 +10,7 @@ public class Proba2 {
 			}
 		}
 
-private static void add() {
+private static void add(int m) {
 			int x;
 			for (int i=0; i<10; i++) {			
 			}
@@ -35,7 +35,7 @@ public class Proba {
 			int d;
 			
 			Proba p = new Proba();
-			Proba p = new Proba();
+			Proba p1 = new Proba();
 			Proba p2 = new Proba(x);
 			Proba p3 = new Proba(x,d);
 			for (int i=0; i<10; i++) {
@@ -48,6 +48,8 @@ public class Proba {
 			int x;
 			for (int i=0; i<10; i++) {			
 			}
+
+			Proba p = new Proba();
 		}
 
 	public static int main(String args) {

@@ -23,7 +23,7 @@
 	int *class_name_size[100];
 	int list_vars_type = -1;
 	int func_count = 0;
-
+	int id_cls = 0;
 	
 	
 %}
@@ -137,7 +137,9 @@ _constr_with_params
 	;
 
 _constr_param
-	: _TYPE _ID	
+	: _TYPE _ID	{
+
+	}
 	;
 
 _constructor_body
@@ -226,7 +228,24 @@ statement
 	;
 
 make_object_statement
-	: _CLASSNAME _ID _ASSIGN _NEW _CLASSNAME _LPAREN ids _RPAREN _SEMICOLON
+	: _CLASSNAME {
+		id_cls = lookup_symbol($1, CLS);
+		printf("  id_cls:  %d", id_cls);
+		if (id_cls == -1) 
+			err("Class not found"); 
+		$<i>$ = id_cls;
+	} _ID {
+		int id_index = lookup_symbol($3, VAR);
+		if (id_index!=-1) {
+			if (func_count==get_atr2(id_index)) {
+				err("Redefinition of variable"); 
+			}
+		}
+	} _ASSIGN _NEW _CLASSNAME {
+		if (lookup_symbol($7, CLS)!=lookup_symbol($1, CLS))
+			err("Class not the same"); 
+		insert_symbol($3, VAR, $<i>2, ++var_num, func_count);
+	} _LPAREN ids _RPAREN _SEMICOLON
 	; 
 
 ids 

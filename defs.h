@@ -30,7 +30,7 @@ enum access_specifier { PUBLIC, PRIVATE };
 
 //vrste simbola (moze ih biti maksimalno 32)
 enum kinds { NO_KIND = 0x1, REG = 0x2, LIT = 0x4, 
-             FUN = 0x8, VAR = 0x10, PAR = 0x20, CLS = 0x40, CLS_ATR = 0x80 };
+             FUN = 0x8, VAR = 0x10, PAR = 0x20, CLS = 0x40, CLS_ATR = 0x80, CONSTR = 0x90 };
 
 //konstante arithmetickih operatora
 enum arops { ADD, SUB, MUL, DIV, AROP_NUMBER };
