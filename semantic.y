@@ -172,22 +172,31 @@ function_list
 function
   : _ACCESS_SPECIFIER static _TYPE _ID
       {
+      	printf("BBBBBBBBBBBB");
+      	printf(" %d",$1); 
 				func_count++;
         fun_idx = lookup_symbol($4, FUN);
         if(fun_idx == NO_INDEX) {
-          fun_idx = insert_symbol($4, FUN, $3, NO_ATR, class_count);
+          fun_idx = insert_symbol($4, FUN, $3, $1, class_count);
 }
         else {
         	if (get_atr2(fun_idx)!=class_count) {
-        		fun_idx = insert_symbol($4, FUN, $3, NO_ATR, class_count);
+        		fun_idx = insert_symbol($4, FUN, $3, $1, class_count);
         	}
         	else 
           	err("redefinition of function '%s'", $4);
         }
+        $<i>$ = fun_idx;
       }
     _LPAREN parameter _RPAREN func_body
       {
-        clear_symbols(fun_idx + 1);
+      	printf("AAAAAAAAAAAA");
+      	printf(" %d",$<i>5); 
+      	printf(" %d",get_atr1($<i>5)); 
+      	if (get_atr1($<i>5)==0) {
+      		printf("Stigao sam");
+      		clear_symbols($<i>5 + 1);
+      	}
         var_num = 0;
       }
   ;

@@ -10,7 +10,7 @@ public class Proba2 {
 			}
 		}
 
-private static void add(int m) {
+public static void add(int m) {
 			int x;
 			for (int i=0; i<10; i++) {			
 			}
