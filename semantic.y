@@ -192,10 +192,20 @@ statement_list
   
 statement
 	: for_statement
+	| if_statement
 	//| expression_statement
 	| inc_statement
 	| assignment_statement
 	;
+	
+if_statement
+  : if_part %prec ONLY_IF
+  | if_part _ELSE statement
+  ;
+  
+if_part
+  : _IF _LPAREN rel_exp _RPAREN statement
+  ;
 	
 inc_statement
 	: _ID 
@@ -209,18 +219,6 @@ err("Postincrement may be only used on variables, not functions.");
 	}
 	_INC _SEMICOLON
 	;		
-
-assignment_statement
-  : _ID _ASSIGN num_exp _SEMICOLON
-      {
-        int idx = lookup_symbol($1, VAR|PAR);
-        if(idx == NO_INDEX)
-          err("invalid lvalue '%s' in assignment", $1);
-        else
-          if(get_type(idx) != get_type($3))
-            err("incompatible types in assignment");
-      }
-  ;
 
 for_statement
 	: _FOR _LPAREN _TYPE _ID {
@@ -299,6 +297,18 @@ argument
             get_name(fcall_idx));
       $$ = 1;
     }
+  ;
+  
+assignment_statement
+  : _ID _ASSIGN num_exp _SEMICOLON
+      {
+        int idx = lookup_symbol($1, VAR|PAR|CLS_ATR);
+        if(idx == NO_INDEX)
+          err("invalid lvalue '%s' in assignment", $1);
+        else
+          if(get_type(idx) != get_type($3))
+            err("incompatible types in assignment");
+      }
   ;
   
 num_exp		

@@ -20,8 +20,14 @@ public class Proba {
 
 	private static void add2() {
 			int x;
-			for (int i=0; i<10; i++) {			
-			}
+//			for (int i=0; i<10; i++) {			
+//			}
+//			for (int i=0; i<10; i++) {			
+//			}
+//			if (4<10) {			
+//			}
+			x=1;
+			a=0;
 		}
 
 	public static int main(String args) {
