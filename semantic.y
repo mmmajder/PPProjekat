@@ -23,6 +23,8 @@
 	int *class_name_size[100];
 	int list_vars_type = -1;
 	int func_count = 0;
+
+	
 	
 %}
 
@@ -63,7 +65,7 @@
 %token _CONTIUNE
 %token _BREAK
 %token _NEW
-%token _CLASS			//
+%token _CLASS			
 %token _STATIC
 %token _DOT
 
@@ -119,6 +121,7 @@ constructor_list
 	: 
 	| constructor_list constructor
 	;
+
 constructor
 	: _CLASSNAME _LPAREN _constr_param_list _RPAREN  _LBRACKET _constructor_body _RBRACKET
 	;
@@ -373,6 +376,7 @@ class_variable
 class_line_vars
 	: _ID {
 		int idx = lookup_symbol($1, CLS_ATR);
+		printf("Idemo  %d", idx);
 		if(idx != -1)
 			if (get_atr2(idx)!=class_count) {
 			  insert_symbol($1, CLS_ATR, list_vars_type, ++var_num, class_count);
@@ -385,10 +389,16 @@ class_line_vars
   }
   | class_line_vars _COMMA _ID
   {
-    if(lookup_symbol($3, CLS_ATR) != -1)
-      err("redefinition of '%s'", $3);
-    else
-      insert_symbol($3, CLS_ATR, list_vars_type, ++var_num, class_count);
+		int idx = lookup_symbol($3, CLS_ATR);
+		if(idx != -1)
+			if (get_atr2(idx)!=class_count) {
+			  insert_symbol($3, CLS_ATR, list_vars_type, ++var_num, class_count);
+			}
+			else	{
+		  	err("redefinition of '%s'", $3);
+			}
+		else
+		  insert_symbol($3, CLS_ATR, list_vars_type, ++var_num, class_count);
   }
 	;
 

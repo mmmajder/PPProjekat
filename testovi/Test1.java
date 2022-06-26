@@ -20,8 +20,7 @@ private static void add() {
 
 public class Proba {
 	int c;
-	int a;
-	int b;
+	int a, b;
 	Proba() {
 	}
 	
