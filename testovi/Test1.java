@@ -16,6 +16,7 @@ public class Proba {
 				//int dadsa;
 				//i++;			
 			}
+			return d;
 	}
 
 	private static void add2() {

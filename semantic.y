@@ -196,6 +196,7 @@ statement
 	//| expression_statement
 	| inc_statement
 	| assignment_statement
+	| return_statement
 	;
 	
 if_statement
@@ -379,6 +380,15 @@ vars
       insert_symbol($3, VAR, list_vars_type, ++var_num, func_count);
   }
   ;
+  
+return_statement
+  : _RETURN num_exp _SEMICOLON
+      {
+        if(get_type(fun_idx) != get_type($2))
+          err("incompatible types in return");
+      }
+  ;
+
 
 %%
 
