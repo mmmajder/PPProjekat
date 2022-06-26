@@ -271,11 +271,25 @@ inc_statement
 	: _ID 
 	{
 		if (lookup_symbol($1, FUN)!=NO_INDEX) {
-err("Postincrement may be only used on variables, not functions.");
+			err("Postincrement may be only used on variables, not functions.");
 		}
 		int idx = lookup_symbol($1, VAR|PAR);
-    if(idx == NO_INDEX)
-      err("invalid lvalue '%s' in assignment", $1); 
+    if(idx == NO_INDEX) {
+    	if (lookup_symbol($1, CLS_ATR)==NO_INDEX)
+      	err("value for inc is not declared: '%s'", $1); 
+      else
+      {
+      	if (get_atr2(lookup_symbol($1, CLS_ATR))!=class_count)
+    			err("value for inc is not declared in this scope: '%s'", $1);
+    	}
+    }
+    else {
+    	printf("BAM ");
+    	printf("%d ", get_atr2(lookup_symbol($1, VAR|PAR)));
+    	printf("%d ", func_count);
+    	if (get_atr2(lookup_symbol($1, VAR|PAR))!=func_count)
+    		err("value for inc is not declared in this scope bla: '%s'", $1);
+    }
 	}
 	_INC _SEMICOLON
 	;		

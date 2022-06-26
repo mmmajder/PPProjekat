@@ -495,10 +495,10 @@ static const yytype_uint16 yyrline[] =
      117,   120,   122,   126,   129,   131,   135,   136,   140,   145,
      147,   151,   151,   167,   169,   174,   173,   204,   206,   211,
      213,   222,   227,   229,   233,   234,   235,   236,   240,   246,
-     253,   240,   260,   262,   266,   267,   272,   271,   284,   296,
-     304,   296,   316,   324,   325,   331,   332,   337,   340,   346,
-     345,   363,   365,   375,   376,   384,   386,   390,   390,   401,
-     401,   405,   418,   434,   441
+     253,   240,   260,   262,   266,   267,   272,   271,   298,   310,
+     318,   310,   330,   338,   339,   345,   346,   351,   354,   360,
+     359,   377,   379,   389,   390,   398,   400,   404,   404,   415,
+     415,   419,   432,   448,   455
 };
 #endif
 
@@ -1509,17 +1509,31 @@ yyreduce:
 #line 272 "semantic.y" /* yacc.c:1646  */
     {
 		if (lookup_symbol((yyvsp[0].s), FUN)!=NO_INDEX) {
-err("Postincrement may be only used on variables, not functions.");
+			err("Postincrement may be only used on variables, not functions.");
 		}
 		int idx = lookup_symbol((yyvsp[0].s), VAR|PAR);
-    if(idx == NO_INDEX)
-      err("invalid lvalue '%s' in assignment", (yyvsp[0].s)); 
+    if(idx == NO_INDEX) {
+    	if (lookup_symbol((yyvsp[0].s), CLS_ATR)==NO_INDEX)
+      	err("value for inc is not declared: '%s'", (yyvsp[0].s)); 
+      else
+      {
+      	if (get_atr2(lookup_symbol((yyvsp[0].s), CLS_ATR))!=class_count)
+    			err("value for inc is not declared in this scope: '%s'", (yyvsp[0].s));
+    	}
+    }
+    else {
+    	printf("BAM ");
+    	printf("%d ", get_atr2(lookup_symbol((yyvsp[0].s), VAR|PAR)));
+    	printf("%d ", func_count);
+    	if (get_atr2(lookup_symbol((yyvsp[0].s), VAR|PAR))!=func_count)
+    		err("value for inc is not declared in this scope bla: '%s'", (yyvsp[0].s));
+    }
 	}
-#line 1519 "semantic.tab.c" /* yacc.c:1646  */
+#line 1533 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 285 "semantic.y" /* yacc.c:1646  */
+#line 299 "semantic.y" /* yacc.c:1646  */
     {
         int idx = lookup_symbol((yyvsp[-3].s), VAR|PAR);
         if(idx == NO_INDEX)
@@ -1528,11 +1542,11 @@ err("Postincrement may be only used on variables, not functions.");
           if(get_type(idx) != get_type((yyvsp[-1].i)))
             err("incompatible types in assignment");
       }
-#line 1532 "semantic.tab.c" /* yacc.c:1646  */
+#line 1546 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 296 "semantic.y" /* yacc.c:1646  */
+#line 310 "semantic.y" /* yacc.c:1646  */
     {
 		fun_idx = lookup_symbol((yyvsp[0].s), FUN);
         if(fun_idx == NO_INDEX)
@@ -1540,76 +1554,76 @@ err("Postincrement may be only used on variables, not functions.");
         else 
           err("redefinition of '%s'", (yyvsp[0].s));
 	}
-#line 1544 "semantic.tab.c" /* yacc.c:1646  */
+#line 1558 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 304 "semantic.y" /* yacc.c:1646  */
+#line 318 "semantic.y" /* yacc.c:1646  */
     {
 		func_count++; 
 		(yyval.i) = get_last_element(); 
 	}
-#line 1553 "semantic.tab.c" /* yacc.c:1646  */
+#line 1567 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 309 "semantic.y" /* yacc.c:1646  */
+#line 323 "semantic.y" /* yacc.c:1646  */
     {
 	 	func_count--;
 	 	clear_symbols((yyvsp[-2].i)+1);
 	}
-#line 1562 "semantic.tab.c" /* yacc.c:1646  */
+#line 1576 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 317 "semantic.y" /* yacc.c:1646  */
+#line 331 "semantic.y" /* yacc.c:1646  */
     {
         if(get_type((yyvsp[-2].i)) != get_type((yyvsp[0].i)))
           err("invalid operands: relational operator");
       }
-#line 1571 "semantic.tab.c" /* yacc.c:1646  */
+#line 1585 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 326 "semantic.y" /* yacc.c:1646  */
+#line 340 "semantic.y" /* yacc.c:1646  */
     {
         (yyval.i) = lookup_symbol((yyvsp[0].s), VAR|PAR);
         if((yyval.i) == NO_INDEX)
           err("'%s' undeclared", (yyvsp[0].s));
       }
-#line 1581 "semantic.tab.c" /* yacc.c:1646  */
+#line 1595 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 333 "semantic.y" /* yacc.c:1646  */
+#line 347 "semantic.y" /* yacc.c:1646  */
     { (yyval.i) = (yyvsp[-1].i); }
-#line 1587 "semantic.tab.c" /* yacc.c:1646  */
+#line 1601 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 338 "semantic.y" /* yacc.c:1646  */
+#line 352 "semantic.y" /* yacc.c:1646  */
     { (yyval.i) = insert_literal((yyvsp[0].s), INT); }
-#line 1593 "semantic.tab.c" /* yacc.c:1646  */
+#line 1607 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 341 "semantic.y" /* yacc.c:1646  */
+#line 355 "semantic.y" /* yacc.c:1646  */
     { (yyval.i) = insert_literal((yyvsp[0].s), UINT); }
-#line 1599 "semantic.tab.c" /* yacc.c:1646  */
+#line 1613 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 346 "semantic.y" /* yacc.c:1646  */
+#line 360 "semantic.y" /* yacc.c:1646  */
     {
         fcall_idx = lookup_symbol((yyvsp[0].s), FUN);
         if(fcall_idx == NO_INDEX)
           err("'%s' is not a function", (yyvsp[0].s));
       }
-#line 1609 "semantic.tab.c" /* yacc.c:1646  */
+#line 1623 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 352 "semantic.y" /* yacc.c:1646  */
+#line 366 "semantic.y" /* yacc.c:1646  */
     {
         if(get_atr1(fcall_idx) != (yyvsp[-1].i))
           err("wrong number of args to function '%s'", 
@@ -1617,43 +1631,43 @@ err("Postincrement may be only used on variables, not functions.");
         set_type(FUN_REG, get_type(fcall_idx));
         (yyval.i) = FUN_REG;
       }
-#line 1621 "semantic.tab.c" /* yacc.c:1646  */
+#line 1635 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 363 "semantic.y" /* yacc.c:1646  */
+#line 377 "semantic.y" /* yacc.c:1646  */
     { (yyval.i) = 0; }
-#line 1627 "semantic.tab.c" /* yacc.c:1646  */
+#line 1641 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 366 "semantic.y" /* yacc.c:1646  */
+#line 380 "semantic.y" /* yacc.c:1646  */
     { 
       if(get_atr2(fcall_idx) != get_type((yyvsp[0].i)))
         err("incompatible type for argument in '%s'",
             get_name(fcall_idx));
       (yyval.i) = 1;
     }
-#line 1638 "semantic.tab.c" /* yacc.c:1646  */
+#line 1652 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 377 "semantic.y" /* yacc.c:1646  */
+#line 391 "semantic.y" /* yacc.c:1646  */
     {
         if(get_type((yyvsp[-2].i)) != get_type((yyvsp[0].i)))
           err("invalid operands: arithmetic operation");
       }
-#line 1647 "semantic.tab.c" /* yacc.c:1646  */
+#line 1661 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 390 "semantic.y" /* yacc.c:1646  */
+#line 404 "semantic.y" /* yacc.c:1646  */
     { list_vars_type = (yyvsp[0].i); }
-#line 1653 "semantic.tab.c" /* yacc.c:1646  */
+#line 1667 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 391 "semantic.y" /* yacc.c:1646  */
+#line 405 "semantic.y" /* yacc.c:1646  */
     {				
 			//	int i = lookup_symbol($2, VAR|PAR);
 				//if( (i != -1) && (get_atr2(i) == block) )
@@ -1661,17 +1675,17 @@ err("Postincrement may be only used on variables, not functions.");
 			//	else 
 				//	insert_symbol($2, VAR, $1, ++var_num, NO_ATR); // block
       }
-#line 1665 "semantic.tab.c" /* yacc.c:1646  */
+#line 1679 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 401 "semantic.y" /* yacc.c:1646  */
+#line 415 "semantic.y" /* yacc.c:1646  */
     { list_vars_type = (yyvsp[0].i); }
-#line 1671 "semantic.tab.c" /* yacc.c:1646  */
+#line 1685 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 405 "semantic.y" /* yacc.c:1646  */
+#line 419 "semantic.y" /* yacc.c:1646  */
     {
 		int idx = lookup_symbol((yyvsp[0].s), CLS_ATR);
 		printf("Idemo  %d", idx);
@@ -1685,11 +1699,11 @@ err("Postincrement may be only used on variables, not functions.");
 		else
 		  insert_symbol((yyvsp[0].s), CLS_ATR, list_vars_type, ++var_num, class_count);
   }
-#line 1689 "semantic.tab.c" /* yacc.c:1646  */
+#line 1703 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 419 "semantic.y" /* yacc.c:1646  */
+#line 433 "semantic.y" /* yacc.c:1646  */
     {
 		int idx = lookup_symbol((yyvsp[0].s), CLS_ATR);
 		if(idx != -1)
@@ -1702,11 +1716,11 @@ err("Postincrement may be only used on variables, not functions.");
 		else
 		  insert_symbol((yyvsp[0].s), CLS_ATR, list_vars_type, ++var_num, class_count);
   }
-#line 1706 "semantic.tab.c" /* yacc.c:1646  */
+#line 1720 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 434 "semantic.y" /* yacc.c:1646  */
+#line 448 "semantic.y" /* yacc.c:1646  */
     {
 	int idx = lookup_symbol((yyvsp[0].s), VAR|PAR);
   if(idx != -1 && get_atr2(idx)==func_count)
@@ -1714,22 +1728,22 @@ err("Postincrement may be only used on variables, not functions.");
   else
     insert_symbol((yyvsp[0].s), VAR, list_vars_type, ++var_num, func_count);
   }
-#line 1718 "semantic.tab.c" /* yacc.c:1646  */
+#line 1732 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 442 "semantic.y" /* yacc.c:1646  */
+#line 456 "semantic.y" /* yacc.c:1646  */
     {
     if(lookup_symbol((yyvsp[0].s), VAR|PAR) != -1)
       err("redefinition of '%s'", (yyvsp[0].s));
     else
       insert_symbol((yyvsp[0].s), VAR, list_vars_type, ++var_num, func_count);
   }
-#line 1729 "semantic.tab.c" /* yacc.c:1646  */
+#line 1743 "semantic.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1733 "semantic.tab.c" /* yacc.c:1646  */
+#line 1747 "semantic.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1957,7 +1971,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 450 "semantic.y" /* yacc.c:1906  */
+#line 464 "semantic.y" /* yacc.c:1906  */
 
 
 int yyerror(char *s) {
