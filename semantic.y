@@ -134,10 +134,25 @@ class_variable_list
   ;
 
 constructor_list
-	: constructor
+	: 
+	| constructor_list constructor
 	;
 constructor
-	: _ACCESS_SPECIFIER _CLASSNAME _LPAREN _RPAREN _LBRACKET _constructor_body _RBRACKET
+	: _CLASSNAME _LPAREN _constr_param_list _RPAREN  _LBRACKET _constructor_body _RBRACKET
+	;
+
+_constr_param_list
+	: 
+	| _constr_with_params
+	;
+
+_constr_with_params
+	: _constr_param
+	| _constr_with_params _COMMA _constr_param
+	;
+
+_constr_param
+	: _TYPE _ID	
 	;
 
 _constructor_body

@@ -4,10 +4,16 @@ public class Proba {
 	int x;
 	//int d = 5;
 	//int a;
-	public Proba() {
+	Proba() {
 		this.a = a;
 		this.b = b;
 	}
+	
+	Proba(int adsa) {
+		this.a = a;
+		this.b = b;
+	}
+	
 	
 	private static void add() {
 			int x;
@@ -39,7 +45,7 @@ public class Proba2 {
 	String a;
 	int b;
 String adasdsa2;
-	public Proba() {}
+	Proba() {}
 
 	private static void add2() {
 //			int x;
