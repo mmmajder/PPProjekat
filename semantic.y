@@ -224,9 +224,23 @@ statement_list
   
 statement
 	: for_statement
-	//| expression_statement
+	| make_object_statement
 	| inc_statement
 	| assignment_statement
+	;
+
+make_object_statement
+	: _CLASSNAME _ID _ASSIGN _NEW _CLASSNAME _LPAREN ids _RPAREN _SEMICOLON
+	; 
+
+ids 
+	:
+	| id_list
+	;
+
+id_list
+	: _ID	
+	| id_list _COMMA _ID
 	;
 	
 inc_statement

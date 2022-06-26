@@ -9,7 +9,7 @@ public class Proba {
 		this.b = b;
 	}
 	
-	Proba(int adsa) {
+	Proba(int a, int b) {
 		this.a = a;
 		this.b = b;
 	}
@@ -19,8 +19,12 @@ public class Proba {
 			int x;
 			//b=1;
 			//int a;
-			
 			int d;
+			
+			Proba p = new Proba();
+			Proba p = new Proba();
+			Proba p2 = new Proba(x);
+			Proba p3 = new Proba(x,d);
 			for (int i=0; i<10; i++) {
 				d++;
 				i++;
