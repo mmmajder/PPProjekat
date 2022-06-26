@@ -22,10 +22,17 @@ public class Proba {
 			int x;
 //			for (int i=0; i<10; i++) {			
 //			}
-//			for (int i=0; i<10; i++) {			
-//			}
-//			if (4<10) {			
-//			}
+			x=14;
+			for (int i=0; i<10; i++) {			
+				x++;
+				x++;
+			}
+			if (10<14) {	
+				x=14;
+			}
+			else {
+				x=34;
+			}
 			x=1;
 			a=0;
 		}

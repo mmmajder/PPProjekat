@@ -200,11 +200,11 @@ statement
 	
 if_statement
   : if_part %prec ONLY_IF
-  | if_part _ELSE statement
+  | if_part _ELSE _LBRACKET statement_list _RBRACKET
   ;
   
 if_part
-  : _IF _LPAREN rel_exp _RPAREN statement
+  : _IF _LPAREN rel_exp _RPAREN _LBRACKET statement_list _RBRACKET
   ;
 	
 inc_statement

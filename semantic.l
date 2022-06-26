@@ -5,10 +5,7 @@
    #include "semantic.tab.h"
    #include "defs.h"
 %}
-/*"private" 	         { yylval.i = PRIVATE; 
-                       return _ACCESS_SPECIFIER;}	
-"public"  	         { yylval.i = PUBLIC; 
-                       return _ACCESS_SPECIFIER;}	*/
+
 %%
 
 [ \t\n]+             { /* skip */ }

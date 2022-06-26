@@ -576,11 +576,7 @@ char *yytext;
    #include "semantic.tab.h"
    #include "defs.h"
 #line 579 "lex.yy.c"
-/*"private" 	         { yylval.i = PRIVATE; 
-                       return _ACCESS_SPECIFIER;}	
-"public"  	         { yylval.i = PUBLIC; 
-                       return _ACCESS_SPECIFIER;}	*/
-#line 584 "lex.yy.c"
+#line 580 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -797,10 +793,10 @@ YY_DECL
 		}
 
 	{
-#line 12 "semantic.l"
+#line 9 "semantic.l"
 
 
-#line 804 "lex.yy.c"
+#line 800 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -870,257 +866,257 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 14 "semantic.l"
+#line 11 "semantic.l"
 { /* skip */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "semantic.l"
+#line 14 "semantic.l"
 { yylval.i = DOUBLE; return _TYPE; } 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "semantic.l"
+#line 15 "semantic.l"
 { yylval.i = BOOLEAN; return _TYPE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "semantic.l"
+#line 16 "semantic.l"
 { yylval.i = BYTE; return _TYPE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "semantic.l"
+#line 17 "semantic.l"
 { yylval.i = CHAR; return _TYPE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 21 "semantic.l"
+#line 18 "semantic.l"
 { yylval.i = LONG; return _TYPE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "semantic.l"
+#line 19 "semantic.l"
 { yylval.i = SHORT; return _TYPE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "semantic.l"
+#line 20 "semantic.l"
 { yylval.i = FLOAT; return _TYPE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "semantic.l"
+#line 21 "semantic.l"
 { yylval.i = VOID; return _TYPE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 25 "semantic.l"
+#line 22 "semantic.l"
 { yylval.i = STRING; return _TYPE; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 27 "semantic.l"
+#line 24 "semantic.l"
 { return _STATIC; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 30 "semantic.l"
+#line 27 "semantic.l"
 { yylval.i = PRIVATE; 
                        return _ACCESS_SPECIFIER;}	
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 32 "semantic.l"
+#line 29 "semantic.l"
 { yylval.i = PUBLIC; 
                        return _ACCESS_SPECIFIER;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 35 "semantic.l"
+#line 32 "semantic.l"
 { return _THIS; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "semantic.l"
+#line 34 "semantic.l"
 { return _FOR; } 	
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 38 "semantic.l"
+#line 35 "semantic.l"
 { return _CONTIUNE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 39 "semantic.l"
+#line 36 "semantic.l"
 { return _BREAK; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 41 "semantic.l"
+#line 38 "semantic.l"
 {return _NEW; } 
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "semantic.l"
+#line 39 "semantic.l"
 {return _CLASS; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 46 "semantic.l"
+#line 43 "semantic.l"
 { yylval.i = INT;  return _TYPE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 47 "semantic.l"
+#line 44 "semantic.l"
 { yylval.i = UINT; return _TYPE; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 48 "semantic.l"
+#line 45 "semantic.l"
 { return _IF; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 49 "semantic.l"
+#line 46 "semantic.l"
 { return _ELSE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 50 "semantic.l"
+#line 47 "semantic.l"
 { return _RETURN; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 52 "semantic.l"
+#line 49 "semantic.l"
 { return _LPAREN; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 53 "semantic.l"
+#line 50 "semantic.l"
 { return _RPAREN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 54 "semantic.l"
+#line 51 "semantic.l"
 { return _LBRACKET; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 55 "semantic.l"
+#line 52 "semantic.l"
 { return _RBRACKET; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 56 "semantic.l"
+#line 53 "semantic.l"
 { return _SEMICOLON; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 57 "semantic.l"
+#line 54 "semantic.l"
 { return _ASSIGN; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 58 "semantic.l"
+#line 55 "semantic.l"
 { return _DO; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 59 "semantic.l"
+#line 56 "semantic.l"
 { return _WHILE; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 62 "semantic.l"
+#line 59 "semantic.l"
 { yylval.i = ADD; return _AROP; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 63 "semantic.l"
+#line 60 "semantic.l"
 { yylval.i = SUB; return _AROP; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 64 "semantic.l"
+#line 61 "semantic.l"
 { return _INC; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 66 "semantic.l"
+#line 63 "semantic.l"
 { yylval.i = LT; return _RELOP; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 67 "semantic.l"
+#line 64 "semantic.l"
 { yylval.i = GT; return _RELOP; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 68 "semantic.l"
+#line 65 "semantic.l"
 { yylval.i = LE; return _RELOP; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 69 "semantic.l"
+#line 66 "semantic.l"
 { yylval.i = GE; return _RELOP; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 70 "semantic.l"
+#line 67 "semantic.l"
 { yylval.i = EQ; return _RELOP; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 71 "semantic.l"
+#line 68 "semantic.l"
 { yylval.i = NE; return _RELOP; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 72 "semantic.l"
+#line 69 "semantic.l"
 { return _COMMA; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 75 "semantic.l"
+#line 72 "semantic.l"
 { yylval.s = strdup(yytext); 
                        return _CLASSNAME; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 78 "semantic.l"
+#line 75 "semantic.l"
 { yylval.s = strdup(yytext); 
                        return _ID; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 81 "semantic.l"
+#line 78 "semantic.l"
 { yylval.s = strdup(yytext); 
                        return _INT_NUMBER;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 83 "semantic.l"
+#line 80 "semantic.l"
 { yylval.s = strdup(yytext); 
                        yylval.s[yyleng-1] = 0;
                        return _UINT_NUMBER;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 87 "semantic.l"
+#line 84 "semantic.l"
 { /* skip */ }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 88 "semantic.l"
+#line 85 "semantic.l"
 { printf("line %d: LEXICAL ERROR on char %c\n", yylineno, *yytext);}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 89 "semantic.l"
+#line 86 "semantic.l"
 ECHO;
 	YY_BREAK
-#line 1124 "lex.yy.c"
+#line 1120 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2137,6 +2133,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 89 "semantic.l"
+#line 86 "semantic.l"
 
 
