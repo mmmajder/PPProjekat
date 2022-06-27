@@ -23,6 +23,7 @@ public static void add(int m) {
 public class Proba {
 	int c;
 	int a, b;
+	int blabal;
 	Proba() {
 	}
 	
