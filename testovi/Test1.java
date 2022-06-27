@@ -2,6 +2,11 @@ public class Proba {
 	int a,c;
 	int b;
 	int x;
+	
+//	Proba()
+ // Proba() {}
+	//() {}
+	
 	//int d = 5;
 	//int a;
 	private static void add() {
@@ -10,6 +15,8 @@ public class Proba {
 			//int a;
 			
 			int d;
+			
+			
 			for (int i=0; i<10; i++) {
 				d++;
 				i++;

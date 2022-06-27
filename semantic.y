@@ -125,15 +125,22 @@ printf("class_count %d", class_count);
 	;
 	
 class_statements
-	: _LBRACKET class_variable_list function_list _RBRACKET
+	: _LBRACKET class_variable_list  function_list _RBRACKET
 	;
 
 class_variable_list
 	: 
   | class_variable_list class_variable
   ;
+  
+/*constructor
+	: _CLASSNAME _LPAREN _RPAREN
+	;*/
 	
-	
+/*parameter_list
+	: parameter_list parameter
+	;*/
+
 function_list
 	: 
 	| function_list function
@@ -339,7 +346,7 @@ variable
   ;
 
 class_variable
-	: _TYPE { list_vars_type = $1; } class_line_vars _SEMICOLON 
+	: _ACCESS_SPECIFIER _TYPE { list_vars_type = $1; } class_line_vars _SEMICOLON 
   ;
 
 class_line_vars
