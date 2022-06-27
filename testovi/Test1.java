@@ -1,6 +1,7 @@
 public class Proba2 {
 	int a;
 	int b;
+	int x;
 	Proba() {}
 
 	private static void add2() {
@@ -14,7 +15,7 @@ public static void add(int m) {
 			int x;
 			int k;
 			int blabal;
-			for (int i=0; i<10; i++) {			
+			for (int x=0; x<10; x++) {			
 			}
 		}
 }
@@ -23,6 +24,7 @@ public static void add(int m) {
 public class Proba {
 	int c;
 	int a, b;
+
 	int blabal;
 	Proba() {
 	}
@@ -33,14 +35,14 @@ public class Proba {
 	}
 	
 	
-	private static void add() {
+	public static void add() {
 			int x;
 			int d;
 			
 			Proba p = new Proba();
 			Proba p1 = new Proba();
 			Proba p2 = new Proba(x);
-			Proba p3 = new Proba(xaa,d);
+			Proba p3 = new Proba(x,d);
 			for (int i=0; i<10; i++) {
 				a++;
 				blabal++;

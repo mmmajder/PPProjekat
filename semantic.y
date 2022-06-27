@@ -25,6 +25,10 @@
 	int func_count = 0;
 	int id_cls = 0;
 	
+	int constr_arg_count = 0;
+	
+	char* className;
+	
 	
 %}
 
@@ -123,7 +127,13 @@ constructor_list
 	;
 
 constructor
-	: _CLASSNAME _LPAREN _constr_param_list _RPAREN  _LBRACKET _constructor_body _RBRACKET
+	: _CLASSNAME {
+		insert_symbol($1, CONSTR, NO_ATR, NO_ATR, class_count);
+	} _LPAREN _constr_param_list {
+		
+	} _RPAREN  _LBRACKET _constructor_body _RBRACKET {
+		
+	}
 	;
 
 _constr_param_list
@@ -133,12 +143,13 @@ _constr_param_list
 
 _constr_with_params
 	: _constr_param
-	| _constr_with_params _COMMA _constr_param
+	| _constr_with_params _COMMA _constr_param {
+	}
 	;
 
 _constr_param
 	: _TYPE _ID	{
-
+		insert_symbol($2, PAR, $1, NO_ATR, class_count);
 	}
 	;
 
@@ -233,7 +244,6 @@ statement
 make_object_statement
 	: _CLASSNAME {
 		id_cls = lookup_symbol($1, CLS);
-		printf("  id_cls:  %d", id_cls);
 		if (id_cls == -1) 
 			err("Class not found"); 
 		$<i>$ = id_cls;
@@ -315,6 +325,7 @@ for_statement
 	}
 	 statement_list _RBRACKET
 	{
+		printf("$<i>15 %d", $<i>15);
 	 	clear_symbols($<i>15+1);
 	}
 	;
@@ -411,7 +422,6 @@ class_variable
 class_line_vars
 	: _ID {
 		int idx = lookup_symbol($1, CLS_ATR);
-		printf("Idemo  %d", idx);
 		if(idx != -1)
 			if (get_atr2(idx)!=class_count) {
 			  insert_symbol($1, CLS_ATR, list_vars_type, ++var_num, class_count);
