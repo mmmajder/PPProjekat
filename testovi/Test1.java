@@ -15,7 +15,10 @@ public class Proba2 {
 			int x;
 			int k;
 			int blabal;
-			for (int x=0; x<10; x++) {			
+			for (int x=0; x<10; x++) {		
+				if (x>5) {
+					k = 10;
+				}
 			}
 		}
 }
@@ -55,9 +58,11 @@ public class Proba {
 			}
 
 			Proba p = new Proba();
+			return ;
 		}
 
 	public static int main(String args) {
+		return 10;
 	}
 
 

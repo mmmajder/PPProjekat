@@ -27,8 +27,9 @@
 	
 	int constr_arg_count = 0;
 	
-	char* className;
+	int return_count = 0;
 	
+	int lab_num = -1;
 	
 %}
 
@@ -73,7 +74,7 @@
 %token _STATIC
 %token _DOT
 
-%type <i> num_exp exp literal function_call argument rel_exp
+%type <i> num_exp exp literal function_call argument rel_exp if_part
 
 %nonassoc ONLY_IF
 %nonassoc _ELSE
@@ -151,6 +152,8 @@ _constr_with_params
 _constr_param
 	: _TYPE _ID	{
 		insert_symbol($2, PAR, $1, NO_ATR, func_count);
+		if($1 == VOID)
+			err("parameter cannot be of VOID type");
 	}
 	;
 
@@ -208,7 +211,10 @@ function
       }
     _LPAREN parameter _RPAREN func_body
       {
-      	printf("access %d\n", get_atr1($<i>5));
+      
+        if( (return_count == 0) && ($3 != VOID) ) 
+					warn("Function should return a value");
+				return_count = 0;
       
       	if ($1==1) {
       		clear_symbols($<i>5 + 1);
@@ -231,6 +237,8 @@ parameter
         insert_symbol($2, PAR, $1, 1, NO_ATR);
         set_atr1(fun_idx, 1);
         set_atr2(fun_idx, $1);
+    		if($1 == VOID)
+					err("parameter cannot be of VOID type");
       }
   ;
   
@@ -250,6 +258,8 @@ statement
 	| make_object_statement
 	| inc_statement
 	| assignment_statement
+	| return_statement
+	| if_statement
 	;
 
 make_object_statement
@@ -320,10 +330,33 @@ assignment_statement
             err("incompatible types in assignment");
       }
   ;
+  
+
+compound_statement
+	: _LBRACKET statement _RBRACKET
+	;
+  
+
+if_statement
+  : if_part %prec ONLY_IF
+  | if_part _ELSE compound_statement 
+  ;
+
+if_part
+  : _IF _LPAREN
+      {
+        $<i>$ = ++lab_num;
+      }
+    rel_exp
+    _RPAREN compound_statement
+      {
+        $$ = $<i>3;
+      }
+  ;
 
 for_statement
 	: _FOR _LPAREN _TYPE _ID {
-		fun_idx = lookup_symbol($4, FUN);
+		int fun_idx = lookup_symbol($4, FUN);
         if(fun_idx == NO_INDEX)
           fun_idx = insert_symbol($4, VAR, $3, ++var_num, NO_ATR);
         else 
@@ -418,16 +451,17 @@ variable_list
 variable
   : _TYPE { list_vars_type = $1; } vars _SEMICOLON
       {				
-			//	int i = lookup_symbol($2, VAR|PAR);
-				//if( (i != -1) && (get_atr2(i) == block) )
-			//		err("redefinition of '%s'", $2);
-			//	else 
-				//	insert_symbol($2, VAR, $1, ++var_num, NO_ATR); // block
+      if($1 == VOID)
+				err("variable cannot be of VOID type");
       }
   ;
 
 class_variable
 	: _TYPE { list_vars_type = $1; } class_line_vars _SEMICOLON 
+	{
+    if($1 == VOID)
+			err("variable cannot be of VOID type");
+	}
   ;
 
 class_line_vars
@@ -474,6 +508,23 @@ vars
       insert_symbol($3, VAR, list_vars_type, ++var_num, func_count);
   }
   ;
+  
+return_statement
+: _RETURN num_exp _SEMICOLON
+	{
+		if(get_type(fun_idx) == VOID) 
+			err("Function cannot return value");
+		else if(get_type(fun_idx) != get_type($2))
+			err("incompatible types in return");
+		return_count++; 
+	}
+	| _RETURN _SEMICOLON
+	{
+		if(get_type(fun_idx) != VOID) 
+		warn("Function should return a value");
+		return_count++; 
+	}
+	;
 
 %%
 
