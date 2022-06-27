@@ -2,7 +2,7 @@ public class Proba2 {
 	int a;
 	int b;
 	int x;
-	Proba() {}
+	Proba2() {}
 
 	public static void add2() {
 			int x;

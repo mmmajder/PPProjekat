@@ -99,8 +99,8 @@ class
 			
 			if(cls_idx == NO_INDEX)
 			{
-        $<i>$ = insert_symbol($3, CLS, $1, NO_ATR, NO_ATR);
-    		class_count++;
+        class_count++;
+        $<i>$ = insert_symbol($3, CLS, $1, NO_ATR, class_count);
       }
       else 
         err("redefinition of class '%s'", $3);
@@ -130,12 +130,12 @@ constructor_list
 constructor
 	: _CLASSNAME {
 		func_count++;
+		int idx = lookup_symbol_last($1, CLS, class_count);
+		if (idx==NO_INDEX) {
+			err("Wrong constructor");
+		}
 		insert_symbol($1, CONSTR, NO_ATR, NO_ATR, class_count);
-	} _LPAREN _constr_param_list {
-		
-	} _RPAREN  _LBRACKET _constructor_body _RBRACKET {
-		
-	}
+	} _LPAREN _constr_param_list _RPAREN  _LBRACKET _constructor_body _RBRACKET 
 	;
 
 _constr_param_list
