@@ -31,6 +31,10 @@
 	
 	int lab_num = -1;
 	
+	int constr_type = -1;
+	
+	int ret_type = -1;
+	
 %}
 
 %union {
@@ -107,7 +111,7 @@ class
 
 	} class_statements {
 		if (get_type($<i>4)==1) {
-			 clear_symbols($<i>4);
+			 clear_symbols($<i>4+1);
 		}
 	  print_symtab();
 	}
@@ -139,8 +143,8 @@ constructor
 	;
 
 _constr_param_list
-	: 
-	| _constr_with_params
+	: {constr_type=-1; }
+	| {constr_type=-1; } _constr_with_params
 	;
 
 _constr_with_params
@@ -150,8 +154,15 @@ _constr_with_params
 	;
 
 _constr_param
-	: _TYPE _ID	{
-		insert_symbol($2, PAR, $1, NO_ATR, func_count);
+	: _TYPE {
+		if (constr_type==-1)
+			constr_type = $1;
+		else {
+			if (constr_type!=$1)
+				err("parameter cannot be of VOID type");
+		}
+	} _ID	{
+		insert_symbol($3, PAR, $1, NO_ATR, func_count);
 		if($1 == VOID)
 			err("parameter cannot be of VOID type");
 	}

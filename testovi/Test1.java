@@ -1,4 +1,4 @@
-public class Proba2 {
+private class Proba2 {
 	int a;
 	int b;
 	int x;
@@ -18,6 +18,8 @@ public class Proba2 {
 			for (int x=0; x<10; x++) {		
 				if (x>5) {
 					k = 10;
+				} else {
+					k = 5;
 				}
 			}
 		}
