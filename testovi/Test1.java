@@ -40,7 +40,7 @@ public class Proba {
 			Proba p = new Proba();
 			Proba p1 = new Proba();
 			Proba p2 = new Proba(x);
-			Proba p3 = new Proba(x,d);
+			Proba p3 = new Proba(xaa,d);
 			for (int i=0; i<10; i++) {
 				a++;
 				blabal++;

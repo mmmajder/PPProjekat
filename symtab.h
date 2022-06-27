@@ -33,7 +33,7 @@ int insert_literal(char *str, unsigned type);
 int lookup_symbol(char *name, unsigned kind);
 
 
-int lookup_symbol_last(char *name, unsigned kind);
+int lookup_symbol_last(char *name, unsigned kind, int count);
 
 // set i get metode za polja tabele simbola
 void     set_name(int index, char *name);

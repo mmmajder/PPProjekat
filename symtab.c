@@ -78,15 +78,15 @@ int lookup_symbol(char *name, unsigned kind) {
   return -1;
 }
 
-int lookup_symbol_last(char *name, unsigned kind) {
+int lookup_symbol_last(char *name, unsigned kind, int count) {
   int i;
-	int res = -1;
   for(i = first_empty - 1; i > FUN_REG; i--) {
     if(strcmp(symbol_table[i].name, name) == 0 
-       && symbol_table[i].kind & kind)
-       res = i;
+       && symbol_table[i].kind & kind
+			 && symbol_table[i].atr2 == count)
+       return i;
   }
-  return i;
+  return -1;
 }
 
 
