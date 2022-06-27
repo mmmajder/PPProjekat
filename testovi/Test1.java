@@ -4,14 +4,14 @@ public class Proba2 {
 	int x;
 	Proba() {}
 
-	private static void add2() {
+	public static void add2() {
 			int x;
 			
 			for (int i=0; i<10; i++) {			
 			}
 		}
 
-public static void add(int m) {
+	public static void add(int m) {
 			int x;
 			int k;
 			int blabal;
@@ -30,12 +30,12 @@ public class Proba {
 	}
 	
 	Proba(int a, int b) {
-		this.a = a;
+		this.a = b;
 		this.b = b;
 	}
 	
 	
-	public static void add() {
+	public static void addd() {
 			int x;
 			int d;
 			

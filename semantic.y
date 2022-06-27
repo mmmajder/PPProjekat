@@ -128,6 +128,7 @@ constructor_list
 
 constructor
 	: _CLASSNAME {
+		func_count++;
 		insert_symbol($1, CONSTR, NO_ATR, NO_ATR, class_count);
 	} _LPAREN _constr_param_list {
 		
@@ -149,7 +150,7 @@ _constr_with_params
 
 _constr_param
 	: _TYPE _ID	{
-		insert_symbol($2, PAR, $1, NO_ATR, class_count);
+		insert_symbol($2, PAR, $1, NO_ATR, func_count);
 	}
 	;
 
@@ -170,10 +171,18 @@ _constructor_row
 			err("Variable is not declared in last class");
 		}
 		
+		if(lookup_symbol_last($5, PAR, func_count)==NO_INDEX) {
+			if(lookup_symbol_last($5, CLS_ATR, class_count)==NO_INDEX) {
+				err("value for param is not declared in this scope: '%s'", $5);
+			}
+		}
+		
 	} _SEMICOLON
 	;
 
 	
+	
+
 	
 function_list
 	: 
@@ -199,7 +208,9 @@ function
       }
     _LPAREN parameter _RPAREN func_body
       {
-      	if (get_atr1($<i>5)==0) {
+      	printf("access %d\n", get_atr1($<i>5));
+      
+      	if ($1==1) {
       		clear_symbols($<i>5 + 1);
       	}
         var_num = 0;

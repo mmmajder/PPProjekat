@@ -26,7 +26,7 @@ extern int yyerror(char *s);
 enum types { NO_TYPE, INT, UINT, FLOAT, BOOLEAN, DOUBLE, BYTE, CHAR, LONG, SHORT, VOID, STRING };
 
 // access
-enum access_specifier { PUBLIC, PRIVATE };
+enum access_specifier { PUBLIC = 0, PRIVATE = 1 };
 
 //vrste simbola (moze ih biti maksimalno 32)
 enum kinds { NO_KIND = 0x1, REG = 0x2, LIT = 0x4, 
